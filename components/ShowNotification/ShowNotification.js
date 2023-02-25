@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 
-const ShowNotification = () => {
+const ShowNotification = ({ setNoticeForModal }) => {
   const route = useRouter();
   const url = `http://localhost:3100/notice`;
   const {
@@ -44,8 +44,22 @@ const ShowNotification = () => {
             </div>
             <div>
               <div className="font-bold">{notice.name}</div>
-              <div className="text-sm opacity-50"><p>{notice.title} </p></div>
+              <div className="text-sm opacity-50"><p>Title: {notice.title}</p>
+                {notice?.body?.length > 30 ?
+                  <>
+                    {notice?.body.slice(0, 20) + ""}
+                    <label
+                      onClick={() => setNoticeForModal(notice)}
+                      htmlFor="my-modal-10" className="font-semibold cursor-pointer">...</label>
+                  </>
+                  :
+                  <>
+                    <p>{notice.body} </p>
+                  </>
+                }
+              </div>
             </div>
+            {/* <label htmlFor="my-modal-10" className="btn">open modal</label> */}
           </div>
         ))}
       </div>

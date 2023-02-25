@@ -20,9 +20,9 @@ const Contact = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-around">
+      <div className="flex items-center justify-around text-white">
         <form ref={form} onSubmit={sendEmail}>
-          <div className="bg-slate-100 p-10 pb-14 rounded-lg w-full xl:mr-40">
+          <div className=" p-10 pb-14 rounded-lg w-full xl:mr-40 bg-green-500">
             <h2 className="text-3xl font-bold">CONTACT US</h2>
             <div className="form-control w-full mt-5">
               <label className="label">
