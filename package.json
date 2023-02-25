@@ -41,6 +41,7 @@
     "react-spring": "^9.6.1",
     "react-tabs": "^6.0.0",
     "react-to-print": "^2.14.11",
+    "socket.io-client": "^4.6.1",
     "sweetalert2": "^11.4.8",
     "vercel": "^28.14.1"
   },
