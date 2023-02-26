@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
 import MidSpinner from "../../../../components/Spiner/MidSpinner";
 import { useFirebase } from "../../../../context/UserContext";
@@ -8,32 +7,24 @@ import Layout from "../../../../Layout/Layout";
 
 const index = () => {
   const [loading, setLoading] = useState(false);
-  const { successMessage } = AlertMessage();
-  const router = useRouter();
+  const { successMessage, errorMessage } = AlertMessage();
   const { user } = useFirebase();
-  const [formData, setFormData] = useState({
-    title: "",
-    body: "",
-    photoURL: user?.photoURL,
-    name: user?.displayName
 
-  });
-
-
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
-  }
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
-  }
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log('form data', formData);
+    const form = event.target;
+    const title = form.title.value;
+    const body = form.body.value;
+    const formData = {
+      title, body,
+      photoURL: user?.photoURL,
+      name: user?.displayName
+    }
+    if (!title || !body) {
+      return errorMessage("Please Provide The information");
+    }
+
 
     fetch("http://localhost:3100/notice", {
       method: "POST",
@@ -45,6 +36,7 @@ const index = () => {
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);
+        form.reset();
         successMessage(
           "Notice post the server"
         );
@@ -57,8 +49,47 @@ const index = () => {
 
   return (
     <Layout>
-      <h1 className="text-center font-semibold">Notice Board</h1>
-      <form onSubmit={handleSubmit} className="flex border w-1/2 mx-auto mt-4 p-5 flex-col items-center justify-center">
+      <div className="bg-gray-200 ">
+        <form onSubmit={handleSubmit} className="flex items-center h-[96vh] justify-center">
+          <div className="border lg:w-2/3 mx-auto bg-white shadow-sm p-4 md:p-7">
+            <h1 className="text-center font-semibold text-3xl pb-4">Notice Board</h1>
+
+            <div className="text-xl md:text-3xl text-center">Please Provide The information</div>
+            <div className="flex flex-col items-center justify-center mt-5 p-4 md:p-0">
+              <div className="w-4/5 flex flex-col items-center py-5">
+
+                <div className="flex items-center w-full md:w-2/3 mt-2">
+                  <label className="mx-2 w-full">Type Title</label>
+                  <input
+                    type="text"
+                    name="title"
+                    placeholder="title"
+                    className="input input-bordered w-full max-w-xs"
+                  />
+                </div>
+                <div className="flex items-center w-full md:w-2/3 mt-2">
+                  <label className="mx-2 w-full">Enter Subject </label>
+                  <textarea type="text"
+                    name="body"
+                    placeholder='message'
+                    className="textarea textarea-bordered textarea-lg w-full max-w-xs mt-2" >
+                  </textarea>
+                </div>
+              </div>
+              <div className=" w-full md:w-3/5 text-right">
+                <button
+                  type="submit"
+                  className="btn btn-sm mt-5">Push Notification</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+
+
+      {/* <form onSubmit={handleSubmit} className="flex border w-1/2 mx-auto mt-4 p-5 flex-col items-center justify-center">
         <input
           type="text"
           name="title"
@@ -78,7 +109,7 @@ const index = () => {
 
         <button className="btn btn-sm mt-2" type="submit">Submit</button>
 
-      </form>
+      </form> */}
 
     </Layout>
   );

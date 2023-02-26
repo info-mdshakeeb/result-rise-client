@@ -22,8 +22,7 @@ const Contact = () => {
     <div>
       <div className="flex items-center justify-around text-white">
         <form ref={form} onSubmit={sendEmail}>
-          <div className=" p-10 pb-14 rounded-lg w-full xl:mr-40 bg-green-500">
-            <h2 className="text-3xl font-bold">CONTACT US</h2>
+          <div className=" p-10 pb-14 rounded-lg w-full xl:mr-40 bg-gradient-to-r from-orange-400 to-rose-400">
             <div className="form-control w-full mt-5">
               <label className="label">
                 <span className="label-text">your name *</span>
