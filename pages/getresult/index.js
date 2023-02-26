@@ -52,7 +52,7 @@ const index = () => {
   return (
     <>
       {!studentType &&
-        <div className=" lg:w-1/2 md:w-1/2 mx-auto  mt-4 md:border md:p-0  ">
+        <div className=" lg:w-1/2 md:w-1/2 mx-auto  mt-4 md:border md:p-0   ">
           <div className="flex bg-[#EEEEEE] items-center justify-around  ">
             <div className="p-2 ">
               <img

@@ -42,14 +42,14 @@ const HeroSection = () => {
                                 </div>
                             </div>
                             <div className='mt-12'>
-                                {user?.uid ? <div className=''>
-                                    <Link href="dashboard/profile">
+                                {user?.uid ? <div className='z-50'>
+                                    <Link href="/dashboard/profile">
                                         <ButtonArrow
                                             h={'10'}>
                                             Go to Your Dashboard
                                         </ButtonArrow> </Link>
-                                </div> : <div className=''>
-                                    <Link href='user/login' >
+                                </div> : <div className='z-50'>
+                                    <Link href='/user/login' >
                                         <ButtonArrow
                                             h={'10'}>
                                             Go to Login
