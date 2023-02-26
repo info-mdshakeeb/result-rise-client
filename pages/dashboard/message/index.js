@@ -1,13 +1,12 @@
-import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useRef, useState } from "react";
 import { AiOutlineVideoCameraAdd } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
 import io from "socket.io-client";
-import { useEffect, useRef, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useFirebase } from "../../../context/UserContext";
+import ActiveFriend from "../../../components/Message/ActiveFriend";
 import FriendsInfo from "../../../components/Message/FriendsInfo";
 import RightSide from "../../../components/Message/RightSide";
-import ActiveFriend from "../../../components/Message/ActiveFriend";
+import { useFirebase } from "../../../context/UserContext";
 
 const index = () => {
   const [newMessage, setNewMessage] = useState(" ");
@@ -22,9 +21,6 @@ const index = () => {
   const activeUserFilter = activeUser.filter(
     (ativeUserInfo) => ativeUserInfo?.userEmail == currentFriend?.email
   );
-
-  console.log("acitve user", activeUser);
-
   useEffect(() => {
     socket.current = io("http://localhost:3100");
     socket.current.on("connected", () => setSocketConnected(true));
@@ -34,6 +30,7 @@ const index = () => {
       // setSocketMessage(getMessageData)
     });
   }, []);
+  console.log(socketMessage);
 
   const userInfo = {
     userEmail: user?.email,
@@ -177,23 +174,23 @@ const index = () => {
             <div className=" flex gap-2 p-2 border overflow-x-scroll">
               {activeUser.length > 0
                 ? activeUser?.map((fd) => (
-                    <ActiveFriend
-                      setCurrentFriend={setCurrentFriend}
-                      activefd={fd}
-                    />
-                  ))
+                  <ActiveFriend
+                    setCurrentFriend={setCurrentFriend}
+                    activefd={fd}
+                  />
+                ))
                 : "Loading..."}
             </div>
 
             <div className="flex-auto overflow-y-auto ">
               {friend.length > 0
                 ? friend?.map((fd) => (
-                    <RightSide
-                      currentFriend={currentFriend}
-                      friend={fd}
-                      setCurrentFriend={setCurrentFriend}
-                    />
-                  ))
+                  <RightSide
+                    currentFriend={currentFriend}
+                    friend={fd}
+                    setCurrentFriend={setCurrentFriend}
+                  />
+                ))
                 : "loading..."}
             </div>
           </div>

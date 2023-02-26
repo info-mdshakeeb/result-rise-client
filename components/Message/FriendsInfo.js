@@ -8,7 +8,6 @@ const FriendsInfo = ({
   scrollRef,
   handleMessageSubmit,
 }) => {
- 
 
   return (
     <>
@@ -22,7 +21,6 @@ const FriendsInfo = ({
                     className="w-10 h-10 rounded-full hover:bg-gray-100 md:mt-5 border border-green-600 "
                     src={singleActiveUser?.userInfo?.userPhoto}
                   />
-
                   <h1 className="flex-grow md:text-xl font-bold">
                     {singleActiveUser?.userInfo?.userName}
                   </h1>
@@ -52,40 +50,40 @@ const FriendsInfo = ({
       <div className="flex-auto overflow-y-auto p-5 space-y-4">
         {showmessage && showmessage.length > 0
           ? showmessage?.map((singlemessage, i) =>
-              singlemessage?.senderEmail !== user?.email ? (
-                <>
-                  <div className="flex flex-row space-x-2" key={i}>
-                    <img
-                      title={currentFriend?.displayName}
-                      className="w-8 h-8 rounded-full"
-                      src={currentFriend?.photoURL}
-                    />
+            singlemessage?.senderEmail !== user?.email ? (
+              <>
+                <div className="flex flex-row space-x-2" key={i}>
+                  <img
+                    title={currentFriend?.displayName}
+                    className="w-8 h-8 rounded-full"
+                    src={currentFriend?.photoURL}
+                  />
 
-                    <div className="flex flex-col">
-                      <div className="bg-gray-200 rounded p-5" ref={scrollRef}>
-                        {singlemessage?.message}
-                      </div>
+                  <div className="flex flex-col">
+                    <div className="bg-gray-200 rounded p-5" ref={scrollRef}>
+                      {singlemessage?.message}
                     </div>
                   </div>
-                </>
-              ) : (
-                <>
-                  <div className="flex space-x-2 flex-row-reverse space-x-reverse">
-                    <img
-                      title={user?.displayName}
-                      className="w-8 h-8 rounded-full"
-                      src={user?.photoURL}
-                    />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex space-x-2 flex-row-reverse space-x-reverse">
+                  <img
+                    title={user?.displayName}
+                    className="w-8 h-8 rounded-full"
+                    src={user?.photoURL}
+                  />
 
-                    <div className="flex flex-col">
-                      <div className="bg-blue-100 rounded p-5" ref={scrollRef}>
-                        {singlemessage?.message}
-                      </div>
+                  <div className="flex flex-col">
+                    <div className="bg-blue-100 rounded p-5" ref={scrollRef}>
+                      {singlemessage?.message}
                     </div>
                   </div>
-                </>
-              )
+                </div>
+              </>
             )
+          )
           : " "}
       </div>
 
@@ -102,5 +100,4 @@ const FriendsInfo = ({
     </>
   );
 };
-
 export default FriendsInfo;

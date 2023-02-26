@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
+import { BiMessageAltDetail } from "react-icons/bi";
 import { GrNotification } from "react-icons/gr";
 import { useFirebase } from "../../context/UserContext";
 import ShowNotification from "../ShowNotification/ShowNotification";
@@ -62,11 +64,16 @@ const DashboardNavbar = () => {
                   ? undefined :
                   <label htmlFor="notification" className="drawer-button btn btn-primary">  <GrNotification size="20px" /></label>
               }
+              <div className="flex justify-center items-center px-4">
+                <Link href='/dashboard/message'> <BiMessageAltDetail size='30px' /></Link>
+              </div>
               <div
                 tabIndex={0}
                 className="mt-8 card card-compact border w-96  dropdown-content bg-base-100 shadow"
               >
                 <div className="card-body w-84 border max-h-[70vh] overflow-scroll z-50 ">
+                  <div>
+                  </div>
                   <ShowNotification
                     noticeData={noticeData} />
                 </div>
