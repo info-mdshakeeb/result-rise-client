@@ -104,10 +104,9 @@ Notification
 Our website provides a notification feature to keep users informed of important updates and announcements. Notifications can include information about system maintenance, changes to features or policies, or other news related to the website or its services. Users can choose to receive notifications via email, text message, or through the website itself. This feature helps users stay up to date and ensures that they have access to the latest information about our service.
 
 Socket.IO
-Upcoming…
 
 Pagination
-Upcoming…
+
 
 
 About Us
